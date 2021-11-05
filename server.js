@@ -5,18 +5,17 @@ const app = express()
 
 //set view engine to ejs
 app.set('view engine', 'ejs')
-
-//set homepage
-app.get('/', (req, res) => {
-    res.render('index')    
-})
+app.use(express.static('public'))
+app.use(express.urlencoded({extended: true}))
 
 //routers
-const userRouter = require('./routes/user')
-const doggoRouter = require('./routes/doggo');
+// const userRouter = require('./routes/users')
+// const doggoRouter = require('./routes/doggo');
+const uploadRouter = require('./routes/upload')
 
-app.use('/user', userRouter);
-app.use('/doggo', doggoRouter);
+app.use('/upload', uploadRouter);
+// app.use('/users', userRouter);
+// app.use('/doggo', doggoRouter);
 
 
 //listen

@@ -7,9 +7,22 @@ router.get('/', (req, res) => {
     res.send('user list')
 })
 
-// '/new' page to make new user doesnt do anything
+// '/new' page to make new user
 router.get('/new', (req, res) => {
-    res.send('user new form')
+    res.render('users/new', {firstName :'test'})
+})
+
+router.post('/new', (req, res) => {
+    const isValid = false
+    if (isValid){
+        users.push({firstName: req.body.firstName})
+        res.redirect(`/users/${users.length -1}`)
+    }else{
+        console.log('invalid user')
+        res.render('users/new', {firstName: req.body.firstName})
+    }
+    console.log(req.body.firstName)
+    res.send('hi')
 })
 
 
