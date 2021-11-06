@@ -5,7 +5,7 @@ const app = express()
 
 //set view engine to ejs
 app.set('view engine', 'ejs')
-app.use(express.static('public'))
+app.use('/public', express.static('public'));
 app.use(express.urlencoded({extended: true}))
 
 //routers
@@ -16,7 +16,7 @@ const uploadRouter = require('./routes/upload')
 app.use('/upload', uploadRouter);
 // app.use('/users', userRouter);
 // app.use('/doggo', doggoRouter);
-
+app.use(express.static('files'))
 
 //listen
 const port = 3000
